@@ -1,3 +1,12 @@
 [submodule "wapi"]
 	path = wapi
 	url = https://github.com/WHAnonymous/Chat-API.git
+[submodule "scripts/qr"]
+	path = scripts/qr
+	url = git@github.com:Detlefff/Detlefff-QR.git
+[submodule "scripts/hash"]
+	path = scripts/hash
+	url = git@github.com:Detlefff/Detlefff-Hash.git
+[submodule "scripts/time"]
+	path = scripts/time
+	url = git@github.com:Detlefff/Detlefff-Time.git
