@@ -1,5 +1,5 @@
 <?php
-require '../wapi/src/events/AllEvents.php';
+require 'wapi/src/events/AllEvents.php';
 require 'message.class.php';
 
 
@@ -98,7 +98,7 @@ class MyEvents extends AllEvents
 
 		echo "$name ($from) is writing: \n $body \n";
 
-		$this->whatsProt->sendMessageComposing($fromNumber);
+		$this->whatsProt->sendMessageComposing(split('@', $from)[0]);
 
 		foreach ($regex as $key => $value) {
 			if(preg_match($value, $body, $matches)) {
@@ -106,23 +106,8 @@ class MyEvents extends AllEvents
 
 				$script = new $key ($message, $matches, $this->whatsProt);
 
-				switch ($script->returnType()) {
-					case 'location':
-						$this->whatsProt->sendMessageLocation($fromNumber, $script->run());
-						break;
-					case 'audio':
-						$this->whatsProt->sendMessageAudio($fromNumber, $script->run());
-						break;
-					case 'video':
-						$this->whatsProt->sendMessageVideo($fromNumber, $script->run());
-						break;
-					case 'image':
-						$this->whatsProt->sendMessageImage($fromNumber, $script->run());
-						break;
-					default:
-						$this->whatsProt->sendMessage($fromNumber, $script->run());
-						break;
-				}
+				$script->run();
+
 				$script->__destruct();
 				break;
 			}
