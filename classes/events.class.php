@@ -1,5 +1,6 @@
 <?php
-require 'wapi/src/events/AllEvents.php';
+require '../wapi/src/events/AllEvents.php';
+require 'message.class.php';
 
 
 class MyEvents extends AllEvents
@@ -89,8 +90,11 @@ class MyEvents extends AllEvents
 	}
 
 	public function onGetMessage($mynumber, $from, $id, $type, $time, $name, $body) {
-		require 'config/regEx.php';
-		$fromNumber = explode('@', $from)[0];
+		//Maybe we shouldn't include the main regEx.php here. We should loop through all
+		//directories within the scripts/ dir and search for valid regexes there!
+		require './config/regEx.php';
+
+		$message = new Message($mynumber, $from, $id, $type, $time, $name, $body);
 
 		echo "$name ($from) is writing: \n $body \n";
 
@@ -100,7 +104,7 @@ class MyEvents extends AllEvents
 			if(preg_match($value, $body, $matches)) {
 				require_once 'scripts/' . $key . '/' . $key . '.php';
 
-				$script = new $key ($matches);
+				$script = new $key ($message, $matches, $this->whatsProt);
 
 				switch ($script->returnType()) {
 					case 'location':
