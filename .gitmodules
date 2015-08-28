@@ -10,3 +10,6 @@
 [submodule "scripts/time"]
 	path = scripts/time
 	url = git@github.com:Detlefff/Detlefff-Time.git
+[submodule "scripts/maps"]
+	path = scripts/maps
+	url = git@github.com:Detlefff/Detlefff-Maps.git
