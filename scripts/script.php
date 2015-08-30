@@ -26,11 +26,8 @@ class Script
 
 	}
 
-	public function send($from, $content, $type)
+	public function send($from, $content, $type = 'text')
 	{
-		if(!defined($type)) {
-			return $this->waConnection->sendMessage($from, $content);
-		}
 		switch ($type) {
 			case 'text':
 				return $this->waConnection->sendMessage($from, $content);
