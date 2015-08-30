@@ -1,5 +1,6 @@
 <?php
 require 'wapi/src/events/AllEvents.php';
+require 'scripts/script.php';
 require 'message.class.php';
 
 
@@ -102,6 +103,9 @@ class MyEvents extends AllEvents
 
 		foreach ($regex as $key => $value) {
 			if(preg_match($value, $body, $matches)) {
+
+				$script = new Script($message, $matches, $this->whatsProt);
+
 				require_once 'scripts/' . $key . '/' . $key . '.php';
 
 				$script = new $key ($message, $matches, $this->whatsProt);
