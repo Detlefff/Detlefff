@@ -13,3 +13,6 @@
 [submodule "scripts/maps"]
 	path = scripts/maps
 	url = git@github.com:Detlefff/Detlefff-Maps.git
+[submodule "scripts/math"]
+	path = scripts/math
+	url = git@github.com:Detlefff/Detlefff-Math.git
