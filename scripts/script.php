@@ -4,10 +4,10 @@
  */
 class Script
 {
-	private $helpMessage = '';
-	private $matches;
-	private $message;
-	private $waConnection;
+	protected $helpMessage = '';
+	protected $matches;
+	protected $message;
+	protected $waConnection;
 
 	function __construct($message, $matches, $waConnection)
 	{
