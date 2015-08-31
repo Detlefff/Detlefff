@@ -117,6 +117,6 @@ class MyEvents extends AllEvents
 			}
 		}
 
-		$this->whatsProt->sendMessagePaused($fromNumber);
+		$this->whatsProt->sendMessagePaused($message->number);
 	}
 }
