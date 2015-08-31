@@ -16,6 +16,10 @@ class Script
 		$this->waConnection = $waConnection;
 	}
 
+	function __destruct()
+	{
+	}
+
 	public function help()
 	{
 		return $helpMessage;
