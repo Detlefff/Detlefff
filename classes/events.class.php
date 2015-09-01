@@ -97,7 +97,7 @@ class MyEvents extends AllEvents
 	}
 	public function onGetMessage($mynumber, $from, $id, $type, $time, $name, $body)
 	{
-		$this->message = new Message($mynumber, undefined, $from, $id, $type, $time, $name, $body);
+		$this->message = new Message($mynumber, null, $from, $id, $type, $time, $name, $body);
 		return $this->execute();
 	}
 
