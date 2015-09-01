@@ -27,9 +27,9 @@ class Script
 
 	}
 
-	public function send($content, $type = 'text', $toNumber)
+	public function send($content, $type = 'text', $toNumber = '')
 	{
-		if(!isset($toNumber)) {
+		if(empty($toNumber)) {
 			$toNumber = $this->message->number;
 		}
 
