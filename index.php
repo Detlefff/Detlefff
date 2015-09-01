@@ -3,9 +3,10 @@
 require_once 'wapi/src/whatsprot.class.php';
 require_once 'config/config.php';
 require_once 'classes/events.class.php';
+require 'classes/matcher.class.php';
 
 $w = new WhatsProt($username, $nickname, $debug);
-$events = new MyEvents($w);
+$events = new MyEvents($w, new Matcher());
 
 $events->setEventsToListenFor($events->activeEvents);
 

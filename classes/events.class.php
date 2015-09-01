@@ -79,6 +79,14 @@ class MyEvents extends AllEvents
 		//        'onUploadFile',
 		//        'onUploadFileFailed',
 	);
+	private $matcher;
+
+	public function __construct(WhatsProt $whatsProt, $matcher)
+	{
+		$this->matcher = $matcher;
+		$this->whatsProt = $whatsProt;
+		return $this;
+	}
 
 	public function onConnect($mynumber, $socket)
 	{
@@ -103,26 +111,13 @@ class MyEvents extends AllEvents
 
 	private function execute()
 	{
-		require './config/regEx.php';
 
 		echo $this->message->name ." (" . $this->message->from . ") is writing: \n" .  $this->message->body . "\n";
 
 		$this->whatsProt->sendMessageComposing(split('@', $this->message->number)[0]);
 
-		foreach ($regex as $key => $value) {
-			if(is_array($value)) {
-				foreach ($value as $pattern) {
-					if(preg_match($pattern, $this->message->body, $matches)) {
-						$this->run($matches, $key);
-						break;
-					}
-				}
-			} else {
-				if(preg_match($value, $this->message->body, $matches)) {
-					$this->run($matches, $key);
-					break;
-				}
-			}
+		if($this->matcher->match($this->message->body)) {
+			$this->run($this->matcher->matches, $this->matcher->pluginName);
 		}
 
 		$this->whatsProt->sendMessagePaused($this->message->number);
