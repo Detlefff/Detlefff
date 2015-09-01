@@ -30,15 +30,19 @@ class Matcher
 
 	public function match($messageBody)
 	{
+		$broken = false;
+
 		foreach ($this->regExes as $key => $value) {
-			echo $key;
 			if(is_array($value)) {
 				foreach ($value as $pattern) {
-					echo $pattern . "\n";
 					if($this->test($pattern, $messageBody)) {
 						$this->pluginName = $key;
+						$broken = true;
 						break;
 					}
+				}
+				if($broken) {
+					break;
 				}
 			} else {
 				if($this->test($value, $messageBody)) {
@@ -46,12 +50,13 @@ class Matcher
 					break;
 				}
 			}
+		}
+		unset($broken);
 
-			if(!empty($this->pluginName) && !empty($this->matches)) {
-				return true;
-			} else {
-				return false;
-			}
+		if(!empty($this->pluginName) && !empty($this->matches)) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
