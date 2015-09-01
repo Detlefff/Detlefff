@@ -29,7 +29,7 @@ class MyEvents extends AllEvents
 		//        'onGetBroadcastLists',
 		//        'onGetError',
 		//        'onGetExtendAccount',
-		//        'onGetGroupMessage',
+		'onGetGroupMessage',
 		//        'onGetGroupParticipants',
 		//        'onGetGroups',
 		//        'onGetGroupsInfo',
@@ -90,28 +90,36 @@ class MyEvents extends AllEvents
 		echo "Phone number $mynumber is disconnected!\n";
 	}
 
-	public function onGetMessage($mynumber, $from, $id, $type, $time, $name, $body) {
-		//Maybe we shouldn't include the main regEx.php here. We should loop through all
-		//directories within the scripts/ dir and search for valid regexes there!
+	public function onGetGroupMessage($mynumber, $from_group_jid, $from_user_jid, $id, $type, $time, $name, $body)
+	{
+		$this->message = new Message($mynumber, $from_group_jid, $from_user_jid, $id, $type, $time, $name, $body);
+		return $this->execute();
+	}
+	public function onGetMessage($mynumber, $from, $id, $type, $time, $name, $body)
+	{
+		$this->message = new Message($mynumber, undefined, $from, $id, $type, $time, $name, $body);
+		return $this->execute();
+	}
+
+	private function execute()
+	{
 		require './config/regEx.php';
 
-		$this->message = new Message($mynumber, $from, $id, $type, $time, $name, $body);
+		echo $this->message->name ." (" . $this->message->from . ") is writing: \n" .  $this->message->body . "\n";
 
-		echo "$name ($from) is writing: \n $body \n";
-
-		$this->whatsProt->sendMessageComposing(split('@', $from)[0]);
+		$this->whatsProt->sendMessageComposing(split('@', $this->message->number)[0]);
 
 		foreach ($regex as $key => $value) {
 			if(is_array($value)) {
 				foreach ($value as $pattern) {
-					if(preg_match($pattern, $body, $matches)) {
-						$this->execute($matches, $key);
+					if(preg_match($pattern, $this->message->body, $matches)) {
+						$this->run($matches, $key);
 						break;
 					}
 				}
 			} else {
-				if(preg_match($value, $body, $matches)) {
-					$this->execute($matches, $key);
+				if(preg_match($value, $this->message->body, $matches)) {
+					$this->run($matches, $key);
 					break;
 				}
 			}
@@ -120,16 +128,13 @@ class MyEvents extends AllEvents
 		$this->whatsProt->sendMessagePaused($this->message->number);
 	}
 
-	private function execute($matches, $name)
+	private function run($matches, $name)
 	{
 		$script = new Script($this->message, $matches, $this->whatsProt);
-
 		require_once 'scripts/' . $name . '/' . $name . '.php';
 
 		$plugin = new $name ($this->message, $matches, $this->whatsProt);
-
 		$plugin->run();
-
 		$plugin->__destruct();
 		$script->__destruct();
 	}
