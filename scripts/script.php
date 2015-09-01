@@ -30,23 +30,27 @@ class Script
 
 	}
 
-	public function send($from, $content, $type = 'text')
+	public function send($content, $type = 'text', $toNumber)
 	{
+		if(!isset($toNumber)) {
+			$toNumber = $this->message->number;
+		}
+
 		switch ($type) {
 			case 'text':
-				return $this->waConnection->sendMessage($from, $content);
+				return $this->waConnection->sendMessage($toNumber, $content);
 				break;
 			case 'image':
-				return $this->waConnection->sendMessageImage($from, $content);
+				return $this->waConnection->sendMessageImage($toNumber, $content);
 				break;
 			case 'audio':
-				return $this->waConnection->sendMessageAudio($from, $content);
+				return $this->waConnection->sendMessageAudio($toNumber, $content);
 				break;
 			case 'video':
-				return $this->waConnection->sendMessageVideo($from, $content);
+				return $this->waConnection->sendMessageVideo($toNumber, $content);
 				break;
 			case 'location':
-				return $this->waConnection->sendMessageLocation($from, $content);
+				return $this->waConnection->sendMessageLocation($toNumber, $content);
 				break;
 		}
 	}
