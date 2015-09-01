@@ -17,6 +17,5 @@ $w->loginWithPassword($password); // Login
 //Endlessly poll the messages from WhatsApp
 while(true) {
 	$w->pollMessage();
-	//$w->sendPing();
 }
 ?>
