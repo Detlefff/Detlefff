@@ -1,7 +1,8 @@
 <?php
 class Script
 {
-	protected $helpMessage = '';
+	protected $helpMessage = "No description provided\n";
+	protected $description = "No help-message provided :(";
 	protected $matches;
 	protected $message;
 	protected $waConnection;
@@ -17,9 +18,13 @@ class Script
 	{
 	}
 
-	public function help()
+	public function usage()
 	{
-		return $helpMessage;
+		$message = $this->description . "\n";
+		$message .= "---\n";
+		$message .= $this->helpMessage;
+
+		return $message;
 	}
 
 	public function run()
