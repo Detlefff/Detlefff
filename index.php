@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 //This will be the main-file, wich redirects the commands to the sub-system
 require_once 'wapi/src/whatsprot.class.php';
