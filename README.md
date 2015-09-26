@@ -32,6 +32,13 @@ cd scripts/
 git clone REPO_URL REPONAME
 ```
 
+---
+
+I appreciate any help coming from the community here.
+Feel free, to correct my bad english, my code or any bugs you'll find.
+
+---
+
 ## Developing Plugins
 
 Plugins must have the follwing structure:
@@ -43,6 +50,8 @@ pluginname
 
 ### regex
 The file holds all the regexes, that are representing the messages, which trigger the plugin.
+
+Every regex should be noted in plaintext (Without braces or something), line for line.
 
 ### pluginname.php
 The file holds the main plugin class. It HAS to be named after the plugin (by the way: the plugin-foler, the file and the class have to be named equaly).
@@ -73,6 +82,7 @@ You have access to the following functions:
 			* location
 		* $toNumber -> Defaults to the number of the sender
 
+The plugins needs to reimplement the `run()` function, to hold the main logic of the plugin (basically you can have other functions, but `run()` is called from the Detlefff-Core)
 
 ### LICENSE
 
