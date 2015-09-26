@@ -17,6 +17,11 @@ To make Detlefff work, you need to register a mobile-number to the WhatsApp-Netw
 
 Fill in you credentials in `config/config.php`.
 
+After the registration, you need to download WhatsAPI:
+```
+git submodule init
+```
+
 Start the script:
 ```
 ./index.php
