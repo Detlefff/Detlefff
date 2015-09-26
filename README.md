@@ -2,6 +2,12 @@
 
 Detlefff is a simple Chatbot for WhatsApp.
 
+---
+
+I appreciate any help coming from the community here.
+Feel free, to correct my bad english, my code or any bugs you'll find.
+
+---
 ## Usage
 
 To make Detlefff work, you need to register a mobile-number to the WhatsApp-Network.
@@ -31,13 +37,6 @@ cd scripts/
 #And clone the repository
 git clone REPO_URL REPONAME
 ```
-
----
-
-I appreciate any help coming from the community here.
-Feel free, to correct my bad english, my code or any bugs you'll find.
-
----
 
 ## Developing Plugins
 
