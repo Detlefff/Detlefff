@@ -7,6 +7,8 @@ Detlefff is a simple Chatbot for WhatsApp.
 I appreciate any help coming from the community here.
 Feel free, to correct my bad english, my code or any bugs you'll find.
 
+If you are plannig to develop a plugin, make sure to head over to [Detlefff-Organisation](https://github.com/Detlefff/Organisation). Open an issue there, describing, what you wanna do. Eventually, someone else is already developing what you want?
+
 ---
 ## Usage
 
