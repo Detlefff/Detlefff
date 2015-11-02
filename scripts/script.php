@@ -32,7 +32,7 @@ class Script
 
 	}
 
-	public function send($content, $type = 'text', $toNumber = '')
+	public function send($content, $type = 'text', $toNumber = '', $caption = '')
 	{
 		if(empty($toNumber)) {
 			$toNumber = $this->message->number;
@@ -43,7 +43,7 @@ class Script
 				return $this->waConnection->sendMessage($toNumber, $content);
 				break;
 			case 'image':
-				return $this->waConnection->sendMessageImage($toNumber, $content);
+				return $this->waConnection->sendMessageImage($toNumber, $content, false, 0, '', $caption);
 				break;
 			case 'audio':
 				return $this->waConnection->sendMessageAudio($toNumber, $content);
