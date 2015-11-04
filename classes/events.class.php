@@ -1,5 +1,5 @@
 <?php
-require 'wapi/src/events/AllEvents.php';
+require 'vendor/whatsapp/chat-api/src/events/AllEvents.php';
 require 'scripts/script.php';
 require 'message.class.php';
 

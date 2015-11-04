@@ -19,7 +19,7 @@ Fill in you credentials in `config/config.php`.
 
 After the registration, you need to download WhatsAPI:
 ```
-git submodule init
+composer install
 ```
 
 Start the script:

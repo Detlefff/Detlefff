@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 //This will be the main-file, wich redirects the commands to the sub-system
-require_once 'wapi/src/whatsprot.class.php';
+require_once 'vendor/whatsapp/chat-api/src/whatsprot.class.php';
 require_once 'config/config.php';
 require_once 'classes/events.class.php';
 require 'classes/matcher.class.php';

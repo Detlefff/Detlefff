@@ -1,0 +1,5 @@
+{
+    "require": {
+        "whatsapp/chat-api": "v2.5.5.3"
+    }
+}
